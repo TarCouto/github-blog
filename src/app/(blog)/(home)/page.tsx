@@ -4,6 +4,7 @@ import { api } from '@/data/api'
 import { Metadata } from 'next'
 import { Issue } from '@/data/@types/issue'
 import { SearchForm } from '@/components/buttonSearch'
+import { Suspense } from 'react'
 export const metadata: Metadata = {
   title: 'Home',
 }
@@ -38,7 +39,9 @@ export default async function Home() {
           {postsCounter} publicaç{`${postsCounter > 1 ? 'ões' : 'ão'}`}
         </small>
       </div>
-      <SearchForm />
+      <Suspense fallback={null}>
+        <SearchForm />
+      </Suspense>
       <div className="grid grid-cols-2 gap-8">
         {issues.map((issue) => (
           <PostCard
