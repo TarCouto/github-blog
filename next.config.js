@@ -1,6 +1,5 @@
-import type { NextConfig } from 'next'
-
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -11,10 +10,10 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'avatars.githubusercontent.com', // Atualize aqui o hostname correto
+        hostname: 'avatars.githubusercontent.com', // Mantenha o hostname correto aqui
       },
     ],
   },
 }
 
-export default nextConfig
+module.exports = nextConfig;
