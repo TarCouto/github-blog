@@ -22,6 +22,25 @@ const config: Config = {
         'base-background': '#071422',
         'base-input': '#040F1A',
       },
+      keyframes: {
+        dash1: {
+          '0%': { strokeDashoffset: '153.087px', strokeDasharray: '153.087px' },
+          '100%': { strokeDashoffset: '0', strokeDasharray: '153.087px' },
+        },
+        dash2: {
+          '0%': { strokeDashoffset: '846.809px', strokeDasharray: '846.809px' },
+          '100%': { strokeDashoffset: '0', strokeDasharray: '846.809px' },
+        },
+        fill2: {
+          '0%': { fill: 'transparent' },
+          '100%': { fill: 'rgb(50, 148, 248)' },
+        },
+      },
+      animation: {
+        'dash-1': 'dash1 1s cubic-bezier(0.47, 0, 0.745, 0.715) forwards',
+        'dash-2':
+          'dash2 1s cubic-bezier(0.47, 0, 0.745, 0.715) forwards, fill2 0.7s cubic-bezier(0.47, 0, 0.745, 0.715) 0.9s forwards',
+      },
     },
   },
   plugins: [],

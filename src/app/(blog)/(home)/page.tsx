@@ -3,6 +3,7 @@ import { PostCard } from '@/components/postCard'
 import { api } from '@/data/api'
 import { Metadata } from 'next'
 import { Issue } from '@/data/@types/issue'
+import { SearchForm } from '@/components/buttonSearch'
 export const metadata: Metadata = {
   title: 'Home',
 }
@@ -20,25 +21,24 @@ export async function getUserIssues(): Promise<Issue[]> {
 
   const issues = await response.json()
 
-  return issues.map((issue: Issue) => {
-    const { title, body, html_url: url, state, created_at: createdAt } = issue
-
-    return {
-      title,
-      body,
-      url,
-      state,
-      createdAt,
-    }
-  })
+  return issues
 }
 
 export default async function Home() {
   const issues = await getUserIssues()
+  const postsCounter = issues.length
   return (
-    <div className="max-w-[864px] w-full flex flex-col gap-[3rem]">
+    <div className="max-w-[864px] w-full flex flex-col gap-[2rem]">
       <PersonalInfo />
-      <div className="text-white">Componente SerachBlobg</div>
+      <div className="flex justify-between">
+        <span className="font-bold text-[1.125rem] leading-[160%] text-base-subtitle mb-0">
+          Publicações
+        </span>
+        <small className="font-light text-[14px] leading-[160%] text-base-span">
+          {postsCounter} publicaç{`${postsCounter > 1 ? 'ões' : 'ão'}`}
+        </small>
+      </div>
+      <SearchForm />
       <div className="grid grid-cols-2 gap-8">
         {issues.map((issue) => (
           <PostCard
