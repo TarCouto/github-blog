@@ -32,13 +32,12 @@ async function searchIssues(query: string): Promise<Issue[]> {
 
 export default async function Search({ searchParams }: SearchProps) {
   const { q: query } = await searchParams
-
-  if (!query) {
-    redirect('/')
-  }
-
   const issues = await searchIssues(query)
   const postsCounter = issues.length
+
+  if (issues.length === 0) {
+    return redirect('/')
+  }
 
   return (
     <div className="flex flex-col gap-4 max-w-[1000px]">
