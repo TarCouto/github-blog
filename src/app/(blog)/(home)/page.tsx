@@ -16,6 +16,8 @@ export async function getUserIssues(): Promise<Issue[]> {
     },
   })
 
+  await new Promise((resolve) => setTimeout(resolve, 3000))
+
   if (!response.ok) {
     throw new Error('Failed to fetch user issues')
   }
