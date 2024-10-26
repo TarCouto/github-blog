@@ -10,13 +10,12 @@ export const metadata: Metadata = {
 }
 
 export async function getUserIssues(): Promise<Issue[]> {
+  await new Promise((resolve) => setTimeout(resolve, 7000))
   const response = await api('/repos/TarCouto/github-blog/issues', {
     next: {
       revalidate: 60 * 60, // Revalida a cada 1 hora
     },
   })
-
-  await new Promise((resolve) => setTimeout(resolve, 7000))
 
   if (!response.ok) {
     throw new Error('Failed to fetch user issues')
