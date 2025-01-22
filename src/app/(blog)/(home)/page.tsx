@@ -30,10 +30,10 @@ export default async function Home() {
   const issues = await getUserIssues()
   const postsCounter = issues.length
   return (
-    <div className="max-w-[864px] w-full flex flex-col gap-[2rem]">
+    <div className="w-full flex flex-col gap-[2rem] pb-10">
       <PersonalInfo />
-      <div className="flex justify-between">
-        <span className="font-bold text-[1.125rem] leading-[160%] text-base-subtitle mb-0">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-0">
+        <span className="font-bold text-[1.125rem] leading-[160%] text-base-subtitle">
           Publicações
         </span>
         <small className="font-light text-[14px] leading-[160%] text-base-span">
@@ -43,7 +43,7 @@ export default async function Home() {
       <Suspense fallback={null}>
         <SearchForm />
       </Suspense>
-      <div className="grid grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
         {issues.map((issue) => (
           <PostCard
             key={issue.title}
@@ -51,7 +51,7 @@ export default async function Home() {
               title: issue.title,
               body: issue.body ?? '',
               created_at: issue.created_at,
-              number: issue.url ? parseInt(issue.url.split('/').pop()!) : 0, // Converte para número
+              number: issue.url ? parseInt(issue.url.split('/').pop()!) : 0,
             }}
           />
         ))}

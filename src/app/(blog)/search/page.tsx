@@ -41,15 +41,15 @@ export default async function Search({ searchParams }: SearchProps) {
 
   return (
     <div className="flex flex-col gap-4 max-w-[1000px]">
-      <div className="flex justify-between mb-4">
-        <span className="font-bold text-[1.125rem] leading-[160%] text-base-subtitle mb-0">
+      <div className="w-full flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+        <span className="hide-mobile font-bold text-[1.125rem] leading-[160%] text-base-subtitle">
           Publicações
         </span>
-        <small className="font-light text-[14px] leading-[160%] text-base-span">
+        <small style={{ display: 'none' }} className="md:!block w-full font-light text-[14px] leading-[160%] text-base-span">
           {postsCounter} publicaç{`${postsCounter > 1 ? 'ões' : 'ão'}`}
         </small>
       </div>
-      <div className="grid grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {issues.map((issue) => (
           <PostCard
             key={issue.title}
@@ -57,7 +57,7 @@ export default async function Search({ searchParams }: SearchProps) {
               title: issue.title,
               body: issue.body ?? '',
               created_at: issue.created_at,
-              number: issue.url ? parseInt(issue.url.split('/').pop()!) : 0, // Converte para número
+              number: issue.url ? parseInt(issue.url.split('/').pop()!) : 0,
             }}
           />
         ))}

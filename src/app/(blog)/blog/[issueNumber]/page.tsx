@@ -60,8 +60,8 @@ export default async function BlogPage({ params }: BlogProps) {
 
   return (
     <div className="mt-[-7.5rem] flex flex-col items-center justify-center px-4">
-      <div className="max-w-[1200px] min-w-[864px] h-auto w-full bg-base-profile p-6 shadow-lg rounded-lg flex flex-col">
-        <header className="flex items-center justify-between">
+      <div className="w-full max-w-[1200px] md:min-w-0 min-w-full bg-base-profile p-4 md:p-6 shadow-lg rounded-lg flex flex-col">
+        <header className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0">
           <Link
             className="no-underline bg-transparent text-blue transition-border duration-200 border-b-2 border-transparent flex items-center gap-2 uppercase font-bold text-xs leading-[160%] hover:border-blue"
             href={'/'}
@@ -80,40 +80,40 @@ export default async function BlogPage({ params }: BlogProps) {
           </Link>
         </header>
         <div className="mt-6">
-          <h1 className=" text-2xl font-semibold mb-3 whitespace-pre-wrap">
+          <h1 className="text-xl md:text-2xl font-semibold mb-3 whitespace-pre-wrap">
             {issue.title}
           </h1>
         </div>
-        <footer className="mt-2 flex items-center gap-6">
-          <span className="flex items-center gap-2 text-base-subtitle">
+        <footer className="mt-2 flex flex-wrap items-center gap-4 md:gap-6">
+          <span className="flex items-center gap-2 text-sm md:text-base text-base-subtitle">
             <i className="fa-brands fa-github text-base-label"></i>
             {issue.user?.login}
           </span>
-          <span className="flex items-center gap-2 text-base-subtitle">
+          <span className="flex items-center gap-2 text-sm md:text-base text-base-subtitle">
             <i className="fa-solid fa-calendar text-base-label"></i>
             {issue.created_at
               ? formatDate(issue.created_at)
               : 'Data não disponível'}
           </span>
-          <span className="flex items-center gap-2 text-base-subtitle">
+          <span className="flex items-center gap-2 text-sm md:text-base text-base-subtitle">
             <i className="fa-solid fa-comment text-base-label"></i>
             {issue.comments} Comentários
           </span>
         </footer>
       </div>
-      <div className="max-w-[864px] w-full p-6 whitespace-pre-wrap overflow-hidden">
+      <div className="w-full max-w-[864px] p-4 md:p-6 whitespace-pre-wrap overflow-hidden">
         <div className="overflow-x-auto w-full h-full">
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             components={{
               p: ({ ...props }) => (
                 <p
-                  className="text-base text-gray-300 leading-loose mb-4"
+                  className="text-sm md:text-base text-gray-300 leading-loose mb-4"
                   {...props}
                 />
               ),
               h3: ({ ...props }) => (
-                <h3 className="text-blue text-2xl font-bold mb-4" {...props} />
+                <h3 className="text-xl md:text-2xl text-blue font-bold mb-4" {...props} />
               ),
               a: ({ ...props }) => (
                 <a

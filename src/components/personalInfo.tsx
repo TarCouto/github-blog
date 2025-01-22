@@ -52,33 +52,33 @@ export async function getDataProfile(): Promise<IUserInfo> {
 export async function PersonalInfo() {
   const data = await getDataProfile()
   return (
-    <div className="max-w-[864px] w-full h-[200px] flex shadow-[0px_2px_28px_rgba(0,0,0,0.2)] rounded-[10px] p-8 gap-8 bg-base-profile -mt-40">
+    <div className="max-w-[864px] w-full min-h-[200px] flex flex-col md:flex-row shadow-[0px_2px_28px_rgba(0,0,0,0.2)] rounded-[10px] p-4 md:p-8 gap-4 md:gap-8 bg-base-profile -mt-40">
       <Image
         src={data.imgUrl}
         width={148}
         height={148}
         alt={''}
-        className=" rounded-md "
+        className="rounded-md mx-auto md:mx-0 w-32 h-32 md:w-[148px] md:h-[148px]"
       />
       <div className="w-full h-full flex flex-col gap-2">
-        <header className="flex justify-between items-center">
-          <h1 className="font-bold text-xl leading-[130%]">{data.name}</h1>
+        <header className="flex flex-col md:flex-row justify-between items-center gap-2">
+          <h1 className="font-bold text-xl leading-[130%] text-center md:text-left">{data.name}</h1>
           <Link
             href={data?.url}
             target="_blank"
             rel="noreferrer"
-            className="font-bold text-xs  hover:text-blue leading-[160%] uppercase no-underline flex gap-2 items-center text-blue-500 transition-border duration-200 border-b-2 border-transparent hover:border-blue"
+            className="font-bold text-xs hover:text-blue leading-[160%] uppercase no-underline flex gap-2 items-center text-blue-500 transition-border duration-200 border-b-2 border-transparent hover:border-blue"
           >
             GITHUB{' '}
             <i className="fa-solid fa-arrow-up-right-from-square hover:text-blue"></i>
           </Link>
         </header>
         <main>
-          <p className="mt-2 break-words w-full text-white">
+          <p className="mt-2 break-words w-full text-white text-center md:text-left">
             {data.description}
           </p>
         </main>
-        <footer className="flex h-full items-end gap-6">
+        <footer className="flex flex-col md:flex-row h-full items-center md:items-end gap-4 md:gap-6 mt-4 md:mt-0">
           <span className="flex items-center gap-2 text-base-subtitle">
             <i className="fa-brands fa-github"></i>
             {data?.githubUsername}
